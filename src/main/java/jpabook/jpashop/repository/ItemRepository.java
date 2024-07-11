@@ -18,6 +18,8 @@ public class ItemRepository {
             em.persist(item);
         } else {
             em.merge(item);
+            // Item merge = em.merge(item);
+            // `item`이 아닌 `merge`가 영속성 상태의 객체로 바뀌는 개념
         }
     }
 
