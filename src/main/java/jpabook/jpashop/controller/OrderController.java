@@ -43,18 +43,11 @@ public class OrderController {
         return "redirect:/orders";
     }
 
-    @GetMapping("/orders")
-    public String orderList(@ModelAttribute("orderSearch")OrderSearch orderSearch, Model model) {
+    @GetMapping(value = "/orders")
+    public String orderList(@ModelAttribute("orderSearch") OrderSearch
+                                    orderSearch, Model model) {
         List<Order> orders = orderService.findOrders(orderSearch);
         model.addAttribute("orders", orders);
-//        model.addAttribute("orderSearch", orderSearch); // 이게 없어도 `@ModelAttribute)가 자동으로 모델에 담아준다.
-
         return "order/orderList";
-    }
-
-    @PostMapping(value = "/orders/{orderId}/cancel")
-    public String cancelOrder(@PathVariable("orderId") Long orderId) {
-        orderService.cancelOrder(orderId);
-        return "redirect:/orders";
     }
 }
